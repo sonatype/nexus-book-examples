@@ -10,5 +10,5 @@ Online versions are available at
 
 * http://www.sonatype.com/Support/Books/Repository-Management-with-Nexus[Repository Management with Nexus - complete book]
 
-* http://www.sonatype.com/books/nexus-book/reference/eval.html[Sonatype Nexus Evaluation Guide content in Nexus book]
+* http://www.sonatype.com/books/nexus-book/reference/eval.html[Sonatype Nexus Evaluation Guide content in Nexus book] - coming soon
 

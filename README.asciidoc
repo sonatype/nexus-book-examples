@@ -2,5 +2,13 @@
 
 == Sonatype Nexus Examples 
 
-This project contains sample projects and other resources referneced from the book 'Repository Management with Nexus' as well as the 'Sonatype Nexus Professional Evaluation Guide'.
+This project contains sample projects and other resources referenced from the book 'Repository Management with Nexus' as well as the 'Sonatype Nexus Professional Evaluation Guide'.
+
+Both are available in source from https://github.com/sonatype/nexus-book
+
+Online versions are available at
+
+* http://www.sonatype.com/Support/Books/Repository-Management-with-Nexus[Repository Management with Nexus - complete book]
+
+* http://www.sonatype.com/books/nexus-book/reference/eval.html[Sonatype Nexus Evaluation Guide content in Nexus book]
 

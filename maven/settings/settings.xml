@@ -1,5 +1,9 @@
 <settings>
-  <mirrors>
+  <!-- the path to the local repository - defaults to ~/.m2/repository
+  -->
+  <!-- <localRepository>/path/to/local/repo</localRepository>
+  -->
+    <mirrors>
     <mirror> <!--Send all requests to the public group -->
       <id>nexus</id>
       <mirrorOf>*</mirrorOf>

@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+repositories {
+    maven {
+          url "http://localhost:8081/nexus/content/groups/public"
+    }
+}
+
+dependencies {
+    compile "com.example:simple-project:1.0-SNAPSHOT"
+}
+
+uploadArchives {
+    repositories {
+       mavenDeployer {
+             repository(url: "http://localhost:8081/nexus/service/local/staging/deploy/maven2") {
+             authentication(userName: "admin", password: "admin123")
+}
+             pom.version = "1.0"
+             pom.artifactId = "another-project"
+             pom.groupId = "com.example"
+       }
+    }
+}

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Detect base directory
+program="$0"
+while [ -h "$program" ] ; do
+    ls=`ls -ld "$program"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+        program="$link"
+    else
+        program=`dirname "$program"`/"$link"
+    fi
+done
+dirname=`dirname "$program"`
+
+# Force evalguide maven to be used
+#M2_HOME="$dirname/maven"
+#export M2_HOME
+
+# Avoid pulling in RC which might break things
+MAVEN_SKIP_RC=true
+export MAVEN_SKIP_RC
+
+# Run maven with custom settings
+exec "$M2_HOME/bin/mvn" \
+    -Devalguide.basedir="$dirname" \
+    -s "$dirname/settings/settings-localrepo.xml" \
+    $*

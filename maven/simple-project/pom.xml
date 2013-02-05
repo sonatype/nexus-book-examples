@@ -165,10 +165,5 @@
       <artifactId>jyield</artifactId>
       <version>0.0.6</version>
     </dependency>
-    <dependency>
-      <groupId>org.sonatype.nexus.trial</groupId>
-      <artifactId>eval-simple-project</artifactId>
-      <version>2.1</version>
-    </dependency>
   </dependencies>
 </project>

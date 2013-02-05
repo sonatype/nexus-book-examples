@@ -1,0 +1,71 @@
+<project xmlns:ivy="antlib:org.apache.ivy.ant" default="jar">
+
+  <property name="nexus.repo" value="http://localhost:8081/nexus"/>
+  <property name="nexus.group" value="/content/groups/public"/>
+
+  <property name="ivy.install.version" value="2.3.0-rc1"/>
+  <property name="ivy.jar.dir" value="${basedir}/ivy"/>
+  <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
+  <property name="build.dir" value="target/classes"/>
+  <property name="src.dir" value="src/main/java"/>
+
+  <target name="download-ivy" unless="skip.download">
+    <mkdir dir="${ivy.jar.dir}"/>
+    <echo message="installing ivy..."/>
+    <get src="${nexus.repo}/content/groups/public/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+  </target>
+
+  <target name="install-ivy" depends="download-ivy" description="--> install ivy">
+    <path id="ivy.lib.path">
+      <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+    </path>
+    <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+  </target>
+
+  <target name="go" depends="install-ivy,jar" description="--> resolve dependencies, compile and run the project">
+
+
+  </target>
+
+  <target name="init" depends="install-ivy">
+    <ivy:settings file="ivysettings.xml" />
+    <ivy:retrieve/>
+  </target>
+
+  <target name="compile" depends="init">
+    <echo message="compiling..."/>
+    <mkdir dir="${build.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${build.dir}"/>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar destfile="target/simple-project.jar" basedir="${build.dir}"/>
+  </target>
+
+  <target name="deploy" depends="jar">
+    <ivy:deliver deliverpattern="${build.dir}/ivy.xml" pubrevision="${publish.revision}" status="release"/>
+    <ivy:makepom ivyfile="${build.dir}/ivy.xml" pomfile="${build.dir}/pom.xml"/>
+    <ivy:resolve/>
+        <tstamp> 
+            <format property="now" pattern="yyyyMMddHHmmss"/> 
+        </tstamp>
+
+
+    <ivy:publish resolver="nexus-snapshots"
+                 revision="1.0-SNAPSHOT"
+                 overwrite="true" 
+                 publishivy="false" >
+        <artifacts pattern="target/[artifact].[ext]"/>
+    </ivy:publish>
+  </target>
+
+  <target name="clean" description="--> clean the project">
+    <delete includeemptydirs="true" quiet="true">
+      <fileset dir="${build.dir}"/>
+    </delete>
+  </target>
+
+  <target name="clean-cache" depends="install-ivy" description="--> clean the ivy cache">
+    <ivy:cleancache/>
+  </target>
+</project>

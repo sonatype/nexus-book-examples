@@ -41,9 +41,9 @@ uploadArchives {
              repository(url: "http://localhost:8081/nexus/content/repositories/snapshots") {
              authentication(userName: "admin", password: "admin123")
 }
-             pom.version = "1.0-SNAPSHOT"
+             pom.version = "1.0.0-SNAPSHOT"
              pom.artifactId = "simple-project"
-             pom.groupId = "com.example"
+             pom.groupId = "org.sonatype.nexus.trial"
        }
     }
 }

@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    compile "com.example:simple-project:1.0-SNAPSHOT"
+    compile "org.sonatype.nexus.trial:simple-project:1.0.0-SNAPSHOT"
 }
 
 uploadArchives {

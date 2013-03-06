@@ -1,6 +1,6 @@
 <ivy-module version="2.0">
-    <info organisation="com.example" module="another-project" revision="1.0"/>
+    <info organisation="org.sonatype.nexus.trial" module="another-project" revision="1.0"/>
     <dependencies>
-      <dependency org="com.example" name="simple-project" rev="1.0-SNAPSHOT"/>
+      <dependency org="org.sonatype.nexus.trial" name="simple-project" rev="1.0.0-SNAPSHOT"/>
     </dependencies>
 </ivy-module>

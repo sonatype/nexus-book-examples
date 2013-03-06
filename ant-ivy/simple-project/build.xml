@@ -3,7 +3,7 @@
   <property name="nexus.repo" value="http://localhost:8081/nexus"/>
   <property name="nexus.group" value="/content/groups/public"/>
 
-  <property name="ivy.install.version" value="2.3.0-rc1"/>
+  <property name="ivy.install.version" value="2.3.0"/>
   <property name="ivy.jar.dir" value="${basedir}/ivy"/>
   <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
   <property name="build.dir" value="target/classes"/>
@@ -52,7 +52,8 @@
 
 
     <ivy:publish resolver="nexus-snapshots"
-                 revision="1.0-SNAPSHOT"
+                 pubrevision="1.0.0-SNAPSHOT"
+                 status="${publish.status}"
                  overwrite="true" 
                  publishivy="false" >
         <artifacts pattern="target/[artifact].[ext]"/>

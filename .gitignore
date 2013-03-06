@@ -4,3 +4,5 @@ target
 repository
 .gradle
 build
+ivy
+lib

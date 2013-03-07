@@ -63,6 +63,7 @@
   <target name="clean" description="--> clean the project">
     <delete includeemptydirs="true" quiet="true">
       <fileset dir="${build.dir}"/>
+      <fileset dir="lib"/>
     </delete>
   </target>
 

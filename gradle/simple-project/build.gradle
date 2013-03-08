@@ -3,7 +3,7 @@ apply plugin: 'maven'
 
 repositories {
     maven {
-          url "http://localhost:8081/nexus/content/groups/public"
+        url "http://localhost:8081/nexus/content/groups/public"
     }
 }
 
@@ -39,11 +39,15 @@ uploadArchives {
     repositories {
        mavenDeployer {
              repository(url: "http://localhost:8081/nexus/content/repositories/snapshots") {
-             authentication(userName: "admin", password: "admin123")
-}
+                 authentication(userName: "admin", password: "admin123")
+             }
              pom.version = "1.0.0-SNAPSHOT"
              pom.artifactId = "simple-project"
              pom.groupId = "org.sonatype.nexus.trial"
        }
     }
+}
+
+task wrapper( type: Wrapper, description: "create a gradlew" ) {
+    gradleVersion = '1.4'
 }

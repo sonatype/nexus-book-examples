@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.sonatype.nexus.trial</groupId>
+  <groupId>org.sonatype.nexus.examples</groupId>
   <artifactId>simple-project</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -14,12 +14,12 @@
   </properties>
   <distributionManagement>
     <repository>
-      <id>nexus-releases</id>
+      <id>nexus</id>
       <name>Nexus Releases</name>
       <url>http://localhost:8081/nexus/service/local/staging/deploy/maven2</url>
     </repository>
     <snapshotRepository>
-      <id>nexus-snapshots</id>
+      <id>nexus</id>
       <name>Nexus Snapshot</name>
       <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
     </snapshotRepository>

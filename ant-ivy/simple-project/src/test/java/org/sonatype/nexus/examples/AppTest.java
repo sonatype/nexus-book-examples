@@ -1,4 +1,4 @@
-package com.example;
+package org.sonatype.nexus.examples;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

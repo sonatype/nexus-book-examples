@@ -1,6 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
+group = "org.sonatype.nexus.trial"
+artifact = "another-project"
+version = "1.0.0-SNAPSHOT"
+
+
 repositories {
     maven {
           url "http://localhost:8081/nexus/content/groups/public"
@@ -8,19 +13,19 @@ repositories {
 }
 
 dependencies {
-    compile "org.sonatype.nexus.trial:simple-project:1.0.0-SNAPSHOT"
+    compile "org.sonatype.nexus.examples:simple-project:1.0.0-SNAPSHOT"
 }
 
 uploadArchives {
     repositories {
-       mavenDeployer {
-             repository(url: "http://localhost:8081/nexus/service/local/staging/deploy/maven2") {
-             authentication(userName: "admin", password: "admin123")
-}
-             pom.version = "1.0"
-             pom.artifactId = "another-project"
-             pom.groupId = "com.example"
-       }
+        mavenDeployer {
+            repository(url: "http://localhost:8081/nexus/service/local/staging/deploy/maven2") {
+                authentication(userName: "admin", password: "admin123")
+            }
+            pom.groupId = ${group}
+            pom.artifactId = ${artifact}
+            pom.version = ${version}
+        }
     }
 }
 

@@ -1,5 +1,5 @@
 <ivy-module version="2.0">
-    <info organisation="org.sonatype.nexus.trial" module="simple-project" revision="1.0.0-SNAPSHOT"/>
+    <info organisation="org.sonatype.nexus.examples" module="simple-project" revision="1.0.0-SNAPSHOT"/>
     <publications>
         <artifact name="simple-project" type="jar"/>
     </publications>

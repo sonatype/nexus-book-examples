@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
-  <localRepository>${evalguide.basedir}/repository</localRepository>
+  <localRepository>${installer:nexus.evalGuideDir}/repository</localRepository>
   <mirrors>
     <mirror>
       <!--Send all requests to the public group -->
       <id>nexus</id>
       <mirrorOf>*</mirrorOf>
       <url>http://localhost:8081/nexus/content/groups/public</url>
-      <!-- <url>http://localhost:${installer:nexus.httpPort}/nexus/content/groups/public</url>  -->
     </mirror>
   </mirrors>
   <activeProfiles>
@@ -48,17 +47,7 @@
   </pluginGroups>
   <servers>
     <server>
-      <id>nexus-releases</id>
-      <username>admin</username>
-      <password>admin123</password>
-    </server>
-    <server>
-      <id>nexus-snapshots</id>
-      <username>admin</username>
-      <password>admin123</password>
-    </server>
-    <server>
-      <id>nexus-site</id>
+      <id>nexus</id>
       <username>admin</username>
       <password>admin123</password>
     </server>

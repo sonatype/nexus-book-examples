@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
-  <localRepository>${installer:nexus.evalGuideDir}/repository</localRepository>
+  <localRepository>${installer:nexus.evalGuideDir}/maven/repository</localRepository>
   <mirrors>
     <mirror>
       <!--Send all requests to the public group -->

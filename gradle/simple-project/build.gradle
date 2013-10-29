@@ -49,5 +49,5 @@ uploadArchives {
 }
 
 task wrapper( type: Wrapper, description: "create a gradlew" ) {
-    gradleVersion = '1.4'
+    gradleVersion = '1.8'
 }

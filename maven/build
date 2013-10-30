@@ -14,7 +14,7 @@ done
 dirname=`dirname "$program"`
 
 # Force evalguide maven to be used
-M2_HOME="$dirname/maven"
+M2_HOME="$dirname/apache-maven"
 export M2_HOME
 
 # Avoid pulling in RC which might break things

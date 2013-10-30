@@ -24,7 +24,7 @@
       <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
     </snapshotRepository>
     <site>
-      <id>nexus-site</id>
+      <id>nexus</id>
       <name>Nexus Sites</name>
       <url>dav:http://localhost:8081/nexus/content/sites/site/</url>
     </site>

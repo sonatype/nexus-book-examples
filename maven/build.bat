@@ -10,7 +10,7 @@ set "dirname=%~dp0"
 if "%dirname%" == "" set "dirname=.\"
 
 rem Force evalguide maven to be used
-set "M2_HOME=%dirname%maven"
+set "M2_HOME=%dirname%apache-maven"
 
 rem Avoid pulling in RC which might break things
 set "MAVEN_SKIP_RC=true"

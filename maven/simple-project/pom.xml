@@ -142,11 +142,6 @@
     </dependency>
     <dependency>
       <groupId>org.sonatype.sisu</groupId>
-      <artifactId>sisu-sitebricks</artifactId>
-      <version>0.0.5</version>
-    </dependency>
-    <dependency>
-      <groupId>org.sonatype.sisu</groupId>
       <artifactId>sisu-ehcache</artifactId>
       <version>1.1</version>
     </dependency>

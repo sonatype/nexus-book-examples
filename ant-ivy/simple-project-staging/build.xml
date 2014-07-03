@@ -1,0 +1,117 @@
+<project xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:staging="antlib:org.sonatype.nexus.ant.staging" default="jar">
+
+  <import file="../../ant-tasks/aether-ant-tasks.xml" />
+  <import file="../../ant-tasks/nexus-staging-ant-tasks.xml" />
+
+  <property name="nexus.group" value="/content/groups/public"/>
+
+  <property name="ivy.install.version" value="2.3.0"/>
+  <property name="ivy.jar.dir" value="${basedir}/ivy"/>
+  <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
+  <property name="build.dir" value="target"/>
+  <property name="dep.dir" value="lib"/>
+  <property name="src.dir" value="src/main/java"/>
+  <property name="jar.name" value="simple-project.jar"/>
+  <property name="repo.dir" value="${build.dir}/localrepo"/>
+
+  <staging:nexusStagingInfo id="target-nexus" stagingDirectory="${build.dir}/stage">
+    <staging:projectInfo groupId="${pom.groupId}" artifactId="${pom.artifactId}" version="${pom.version}"/>
+    <staging:connectionInfo baseUrl="${nexus.url}">
+      <staging:authentication username="${nexus.username}" password="${nexus.password}"/>
+      <!--
+      <staging:proxy host="proxy.mycorp.com" port="8080">
+          <staging:authentication username="proxyUser" password="proxySecret" />
+      </staging:proxy>
+      -->
+    </staging:connectionInfo>
+  </staging:nexusStagingInfo>
+
+  <target name="download-ivy" unless="skip.download">
+    <mkdir dir="${ivy.jar.dir}"/>
+    <echo message="installing ivy..."/>
+    <get src="${nexus.url}${nexus.group}/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true"/>
+  </target>
+
+  <target name="install-ivy" depends="download-ivy" description="--> install ivy">
+    <path id="ivy.lib.path">
+      <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+    </path>
+    <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+  </target>
+
+  <target name="go" depends="install-ivy,jar" description="--> resolve dependencies, compile and run the project">
+
+  </target>
+
+  <target name="init" depends="install-ivy">
+    <ivy:settings file="ivysettings.xml" />
+    <ivy:retrieve/>
+  </target>
+
+  <target name="compile" depends="init">
+    <echo message="compiling..."/>
+    <mkdir dir="${build.dir}/classes"/>
+    <javac srcdir="${src.dir}" destdir="${build.dir}/classes"/>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar destfile="${build.dir}/${jar.name}" basedir="${build.dir}/classes"/>
+  </target>
+
+  <target name="deploy" depends="jar">
+    <ivy:makepom ivyfile="ivy.xml" pomfile="${build.dir}/pom.xml"/>
+   <!-- <ivy:deliver deliverpattern="${build.dir}/ivy.xml" pubrevision="${publish.revision}" status="release"/>
+    <ivy:resolve/>
+        <tstamp> 
+            <format property="now" pattern="yyyyMMddHHmmss"/> 
+        </tstamp>
+
+    <ivy:publish resolver="nexus-releases"
+                 pubrevision="1.0.0"
+                 status="${publish.status}"
+                 overwrite="true" 
+                 publishivy="false" >
+        <artifacts pattern="target/[artifact].[ext]"/>  
+    </ivy:publish>
+    -->
+    
+    <property name="groupId" value="${ivy.organisation}" />
+    <echo message="${groupId}" file="${build.dir}/a.tmp.file" />
+    <loadfile property="groupIdPath" srcFile="${build.dir}/a.tmp.file">
+      <filterchain>
+        <tokenfilter>
+          <replaceregex pattern="\." replace="/" flags="g" />
+        </tokenfilter>
+      </filterchain>
+    </loadfile>
+    <property name="repoPath" value="${repo.dir}/${groupIdPath}/${ivy.module}/${ivy.revision}" />
+    <mkdir dir="${repoPath}"/>
+    <copy file="${build.dir}/${jar.name}" toFile="${repoPath}/${ivy.module}-${ivy.revision}.jar" verbose="true"/>
+    <copy file="${build.dir}/pom.xml" toFile="${repoPath}/${ivy.module}-${ivy.revision}.pom" verbose="true"/>
+    <echo message="Local staging repository created, components in: ${repoPath}"/>
+
+    <staging:stageLocally>
+      <staging:nexusStagingInfo refid="target-nexus"/>
+      <fileset dir="${repo.dir}/" includes="**/*.*"/>
+    </staging:stageLocally>
+
+    <staging:stageRemotely>
+      <staging:nexusStagingInfo refid="target-nexus"/>
+    </staging:stageRemotely>
+
+    <staging:releaseStagingRepository autoDropAfterRelease="true">
+      <staging:nexusStagingInfo refid="target-nexus"/>
+    </staging:releaseStagingRepository>
+  </target>
+
+  <target name="clean" description="--> clean the project">
+    <delete includeemptydirs="true" quiet="true">
+      <fileset dir="${build.dir}"/>
+      <fileset dir="${dep.dir}"/>
+    </delete>
+  </target>
+
+  <target name="clean-cache" depends="install-ivy" description="--> clean the ivy cache">
+    <ivy:cleancache/>
+  </target>
+</project>

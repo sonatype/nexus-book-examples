@@ -1,0 +1,28 @@
+<ivy-module version="2.0">
+    <info organisation="org.sonatype.nexus.examples" module="simple-project-staging" revision="1.0.0"/>
+    <publications>
+        <artifact name="simple-project-staging" type="jar"/>
+    </publications>
+    <dependencies>
+      <dependency org="org.jbundle.util" name="org.jbundle.util.jbackup" rev="2.0.0"/>
+      <dependency org="org.shoal" name="shoal-gms-api" rev="1.5.8"/>
+      <dependency org="org.ow2.util" name="util-i18n" rev="1.0.22"/>
+      <dependency org="com.sun.grizzly" name="grizzly-lzma" rev="1.9.19-beta5"/>
+      <dependency org="org.codehaus.sonar" name="sonar-squid" rev="2.9"/>
+      <dependency org="org.graniteds" name="granite-openjpa" rev="2.2.0.SP1"/>
+      <dependency org="org.apache.tomcat" name="tomcat-util" rev="7.0.0"/>
+      <dependency org="org.apache.camel" name="camel-http" rev="2.4.0"/>
+      <dependency org="org.apache.struts.xwork" name="xwork-core" rev="2.2.1"/>
+      <dependency org="org.mortbay.jetty" name="jetty" rev="6.1.16"/>
+      <dependency org="org.apache.derby" name="derby" rev="10.1.2.1"/>
+      <dependency org="com.google.code.facebookapi" name="facebook-java-api" rev="3.0.4"/>
+      <dependency org="com.google.guava" name="guava" rev="12.0"/>
+      <dependency org="com.google.guava" name="guava-gwt" rev="12.0"/>
+      <dependency org="biz.littlej.jreqs" name="jreqs-guava" rev="0.1.1"/>
+      <dependency org="org.sonatype.sisu" name="sisu-ehcache" rev="1.1"/>
+      <dependency org="org.sonatype.sisu" name="sisu-xmlrpc-client" rev="1.2.0"/>
+      <dependency org="com.googlecode" name="kiama_2.8.1" rev="1.0.2"/>
+      <dependency org="com.googlecode" name="jyield" rev="0.0.6"/>
+      <dependency org="commons-cli" name="commons-cli" rev="1.0"/>
+    </dependencies>
+</ivy-module>

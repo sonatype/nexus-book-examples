@@ -1,0 +1,25 @@
+<project name="aether" xmlns:aether="antlib:org.eclipse.aether.ant">
+  <dirname property="aether.basedir" file="${ant.file.aether}" />
+  <taskdef uri="antlib:org.eclipse.aether.ant" resource="org/eclipse/aether/ant/antlib.xml">
+    <classpath>
+      <fileset dir="${aether.basedir}" includes="aether-ant-tasks-*.jar" />
+    </classpath>
+  </taskdef>
+
+  <aether:authentication username="admin" password="admin123" id="auth"/>
+
+  <aether:remoterepo id="release.repo" url="http://localhost:8081/nexus/service/local/staging/deploy/maven2">
+    <releases enabled="true" updates="daily"/>
+    <snapshots enabled="false"/>
+    <authentication refid="auth"/>
+  </aether:remoterepo>
+
+  <aether:remoterepo id="snapshot.repo" url="http://localhost:8081/nexus/content/repositories/snapshots">
+    <releases enabled="false"/>
+    <snapshots enabled="true"/>
+    <authentication refid="auth"/>
+  </aether:remoterepo>
+
+  <!-- Download everything from the public group of Nexus  -->
+  <aether:mirror id="mirror" url="http://localhost:8081/nexus/content/groups/public/" mirrorOf="*"/>
+</project>

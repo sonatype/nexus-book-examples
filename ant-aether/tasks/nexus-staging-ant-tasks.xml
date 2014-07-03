@@ -1,0 +1,12 @@
+<project name="staging" xmlns:staging="antlib:org.sonatype.nexus.ant.staging">
+  <dirname property="staging.basedir" file="${ant.file.staging}" />
+  <taskdef uri="antlib:org.sonatype.nexus.ant.staging" resource="org/sonatype/nexus/ant/staging/antlib.xml">
+    <classpath>
+      <fileset dir="${staging.basedir}" includes="nexus-staging-ant-tasks-*uber.jar" />
+    </classpath>
+  </taskdef>
+  
+  <property name="nexus.url" value="http://localhost:8081/nexus"/>
+  <property name="nexus.username" value="admin"/>
+  <property name="nexus.password" value="admin123"/>
+</project>

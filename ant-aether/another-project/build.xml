@@ -1,0 +1,49 @@
+<project name="mvp" xmlns:aether="antlib:org.eclipse.aether.ant">
+
+  <import file="../tasks/aether-ant-tasks.xml" />
+  <dirname property="simple-project.basedir" file="${ant.file.simple-project}/" />
+  <aether:pom file="${simple-project.basedir}/pom.xml" id="pom" />
+
+  <property name="build.dir" value="target" />
+  <property name="dep.dir" value="lib"/>
+  <property name="jar.name" value="another-project.jar"/>
+  <property name="src.dir" value="src/main/java" />
+  
+  <aether:artifacts id="attached">
+    <aether:artifact file="${build.dir}/${jar.name}" />
+  </aether:artifacts>
+
+  <target name="init" description="--> initialize project"> 
+    <aether:resolve>
+      <files dir="${dep.dir}" layout="{artifactId}-{version}.{extension}" />
+    </aether:resolve>
+  </target>
+
+  <target name="compile" depends="init" description="--> compile source code">
+    <echo message="compiling..." />
+    <mkdir dir="${build.dir}/classes" />
+    <javac srcdir="${src.dir}" destdir="${build.dir}/classes" />
+  </target>
+  
+  <target name="jar" depends="compile" description="--> package jar">
+    <jar destfile="${build.dir}/${jar.name}" basedir="${build.dir}/classes" />
+  </target>
+
+  <target name="install" depends="jar" description="--> install to local Maven repository">
+    <aether:install pomref="pom" artifactsref="attached" />
+  </target>
+
+  <target name="deploy" depends="install" description="--> deploy to remote Maven repository">
+    <aether:deploy pomref="pom" artifactsref="attached">
+      <remoterepo refid="release.repo"/>
+      <snapshotrepo refid="snapshot.repo"/>
+    </aether:deploy>
+  </target>
+
+  <target name="clean" description="--> clean the project">
+    <delete includeemptydirs="true" quiet="true">
+      <fileset dir="${build.dir}" />
+      <fileset dir="${dep.dir}"/>
+    </delete>
+  </target>
+</project>

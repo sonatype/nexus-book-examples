@@ -6,3 +6,5 @@ repository
 build
 ivy
 lib
+.classpath
+.settings

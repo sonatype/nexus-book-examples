@@ -4,7 +4,7 @@
   <import file="../../ant-tasks/nexus-staging-ant-tasks.xml" />
 
   <property name="build.dir" value="target" />
-  <property name="stage.dir" value="${build.dir}/localrepo"/>
+  <property name="repo.dir" value="${build.dir}/localrepo"/>
   <property name="dep.dir" value="lib"/>
   <property name="jar.name" value="simple-project.jar"/>
   <property name="src.dir" value="src/main/java" />
@@ -12,7 +12,7 @@
   <dirname property="simple-project.basedir" file="${ant.file.simple-project}/" />
   <aether:pom file="${simple-project.basedir}/pom.xml" id="pom" />
 
-  <staging:nexusStagingInfo id="target-nexus" stagingDirectory="${build.dir}/stage">
+  <staging:nexusStagingInfo id="target-nexus" stagingDirectory="${build.dir}/localStage">
     <staging:projectInfo groupId="${pom.groupId}" artifactId="${pom.artifactId}" version="${pom.version}"/>
     <staging:connectionInfo baseUrl="${nexus.url}">
       <staging:authentication username="${nexus.username}" password="${nexus.password}"/>
@@ -85,7 +85,7 @@
         </tokenfilter>
       </filterchain>
     </loadfile>
-    <property name="repoPath" value="${stage.dir}/${groupIdPath}/${pom.artifactId}/${pom.version}" />
+    <property name="repoPath" value="${repo.dir}/${groupIdPath}/${pom.artifactId}/${pom.version}" />
     <mkdir dir="${repoPath}"/>
     <copy file="${build.dir}/${jar.name}" toFile="${repoPath}/${pom.artifactId}-${pom.version}.jar" verbose="true"/>
     <copy file="${simple-project.basedir}/pom.xml" toFile="${repoPath}/${pom.artifactId}-${pom.version}.pom" verbose="true"/>
@@ -93,7 +93,7 @@
 
     <staging:stageLocally>
       <staging:nexusStagingInfo refid="target-nexus"/>
-      <fileset dir="${stage.dir}/" includes="**/*.*"/>
+      <fileset dir="${repo.dir}/" includes="**/*.*"/>
     </staging:stageLocally>
 
     <staging:stageRemotely>

@@ -1,4 +1,4 @@
-<project name="simple-project"  default="install"
+<project name="simple-project-staging"  default="install"
   xmlns:aether="antlib:org.eclipse.aether.ant"
   xmlns:staging="antlib:org.sonatype.nexus.ant.staging">
 
@@ -11,8 +11,8 @@
   <property name="jar.name" value="simple-project.jar"/>
   <property name="src.dir" value="src/main/java" />
 
-  <dirname property="simple-project.basedir" file="${ant.file.simple-project}/" />
-  <aether:pom file="${simple-project.basedir}/pom.xml" id="pom" />
+  <dirname property="simple-project-staging.basedir" file="${ant.file.simple-project}/" />
+  <aether:pom file="${simple-project-staging.basedir}/pom.xml" id="pom" />
 
   <staging:nexusStagingInfo id="target-nexus" stagingDirectory="${build.dir}/localStage">
     <staging:projectInfo groupId="${pom.groupId}" artifactId="${pom.artifactId}" version="${pom.version}"/>

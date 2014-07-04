@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-group = 'org.sonatype.nexus.trial'
+group = 'org.sonatype.nexus.example'
 version = '1.0.0-SNAPSHOT'
 
 repositories {
@@ -39,14 +39,17 @@ dependencies {
 
 uploadArchives {
     repositories {
-       mavenDeployer {
-             repository(url: "http://localhost:8081/nexus/content/repositories/snapshots") {
-                 authentication(userName: "admin", password: "admin123")
-             }
-       }
+        mavenDeployer {
+            repository(url: 'http://localhost:8081/nexus/content/repositories/releases') {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+            snapshotRepository(url: 'http://localhost:8081/nexus/content/repositories/snapshots') {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+        }
     }
 }
 
 task wrapper( type: Wrapper, description: "create a gradlew" ) {
-    gradleVersion = '1.8'
+    gradleVersion = '2.0'
 }

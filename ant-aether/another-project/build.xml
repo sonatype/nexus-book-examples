@@ -1,4 +1,5 @@
-<project name="mvp" xmlns:aether="antlib:org.eclipse.aether.ant" default="install">
+<project name="mvp" default="install"
+  xmlns:aether="antlib:org.eclipse.aether.ant">
 
   <import file="../../ant-tasks/aether-ant-tasks.xml" />
   <dirname property="simple-project.basedir" file="${ant.file.simple-project}/" />

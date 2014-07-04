@@ -1,4 +1,6 @@
-<project name="simple-project" xmlns:aether="antlib:org.eclipse.aether.ant" xmlns:staging="antlib:org.sonatype.nexus.ant.staging">
+<project name="simple-project"  default="install"
+  xmlns:aether="antlib:org.eclipse.aether.ant"
+  xmlns:staging="antlib:org.sonatype.nexus.ant.staging">
 
   <import file="../../ant-tasks/aether-ant-tasks.xml" />
   <import file="../../ant-tasks/nexus-staging-ant-tasks.xml" />

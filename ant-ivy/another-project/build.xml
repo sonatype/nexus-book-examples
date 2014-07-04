@@ -46,16 +46,16 @@
     <ivy:deliver deliverpattern="${build.dir}/ivy.xml" pubrevision="${publish.revision}" status="release"/>
     <ivy:makepom ivyfile="${build.dir}/ivy.xml" pomfile="${build.dir}/pom.xml"/>
     <ivy:resolve/>
-        <tstamp> 
-            <format property="now" pattern="yyyyMMddHHmmss"/> 
-        </tstamp>
+    <tstamp>
+      <format property="now" pattern="yyyyMMddHHmmss"/>
+    </tstamp>
 
 
     <ivy:publish resolver="nexus-stage"
                  revision="1.0"
                  overwrite="true" 
                  publishivy="false" >
-        <artifacts pattern="target/[artifact].[ext]"/>
+      <artifacts pattern="target/[artifact].[ext]"/>
     </ivy:publish>
   </target>
 

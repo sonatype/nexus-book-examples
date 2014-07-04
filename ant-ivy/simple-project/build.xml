@@ -23,8 +23,6 @@
   </target>
 
   <target name="go" depends="install-ivy,jar" description="--> resolve dependencies, compile and run the project">
-
-
   </target>
 
   <target name="init" depends="install-ivy">
@@ -46,17 +44,15 @@
     <ivy:deliver deliverpattern="${build.dir}/ivy.xml" pubrevision="${publish.revision}" status="release"/>
     <ivy:makepom ivyfile="${build.dir}/ivy.xml" pomfile="${build.dir}/pom.xml"/>
     <ivy:resolve/>
-        <tstamp> 
-            <format property="now" pattern="yyyyMMddHHmmss"/> 
-        </tstamp>
-
-
+    <tstamp>
+      <format property="now" pattern="yyyyMMddHHmmss"/>
+    </tstamp>
     <ivy:publish resolver="nexus-snapshots"
                  pubrevision="1.0.0-SNAPSHOT"
                  status="${publish.status}"
                  overwrite="true" 
                  publishivy="false" >
-        <artifacts pattern="target/[artifact].[ext]"/>
+      <artifacts pattern="target/[artifact].[ext]"/>
     </ivy:publish>
   </target>
 

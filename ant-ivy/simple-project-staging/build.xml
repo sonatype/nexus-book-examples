@@ -1,4 +1,5 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:staging="antlib:org.sonatype.nexus.ant.staging" default="jar">
+<project default="jar"
+  xmlns:ivy="antlib:org.apache.ivy.ant" xmlns:staging="antlib:org.sonatype.nexus.ant.staging" >
 
   <import file="../../ant-tasks/aether-ant-tasks.xml" />
   <import file="../../ant-tasks/nexus-staging-ant-tasks.xml" />
@@ -60,20 +61,6 @@
 
   <target name="deploy" depends="jar">
     <ivy:makepom ivyfile="ivy.xml" pomfile="${build.dir}/pom.xml"/>
-   <!-- <ivy:deliver deliverpattern="${build.dir}/ivy.xml" pubrevision="${publish.revision}" status="release"/>
-    <ivy:resolve/>
-        <tstamp> 
-            <format property="now" pattern="yyyyMMddHHmmss"/> 
-        </tstamp>
-
-    <ivy:publish resolver="nexus-releases"
-                 pubrevision="1.0.0"
-                 status="${publish.status}"
-                 overwrite="true" 
-                 publishivy="false" >
-        <artifacts pattern="target/[artifact].[ext]"/>  
-    </ivy:publish>
-    -->
     
     <property name="groupId" value="${ivy.organisation}" />
     <echo message="${groupId}" file="${build.dir}/a.tmp.file" />

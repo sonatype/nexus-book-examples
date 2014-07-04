@@ -1,6 +1,6 @@
-<project name="simple-project" xmlns:aether="antlib:org.eclipse.aether.ant">
+<project name="simple-project" xmlns:aether="antlib:org.eclipse.aether.ant" default="install">
 
-  <import file="../tasks/aether-ant-tasks.xml" />
+  <import file="../../ant-tasks/aether-ant-tasks.xml" />
   <dirname property="simple-project.basedir" file="${ant.file.simple-project}/" />
   <aether:pom file="${simple-project.basedir}/pom.xml" id="pom" />
 

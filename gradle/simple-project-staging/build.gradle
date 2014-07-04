@@ -1,12 +1,23 @@
+buildscript {
+    repositories {
+        maven {
+            url nexusPublicGroup
+        }
+    }
+    dependencies {
+        classpath 'com.adaptc.gradle:nexus-workflow:0.5'
+    }
+}
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'nexus-workflow'
 
 group = 'org.sonatype.nexus.example'
 version = '1.0.0-SNAPSHOT'
 
 repositories {
     maven {
-        url 'http://localhost:8081/nexus/content/groups/public'
+        url nexusPublicGroup
     }
 }
 
@@ -40,7 +51,7 @@ dependencies {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: 'http://localhost:8081/nexus/content/repositories/releases') {
+            repository(url: 'http://localhost:8081/nexus/service/local/staging/deploy/maven2') {
                 authentication(userName: nexusUsername, password: nexusPassword)
             }
             snapshotRepository(url: 'http://localhost:8081/nexus/content/repositories/snapshots') {

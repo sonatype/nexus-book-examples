@@ -42,7 +42,8 @@ dependencies {
   compile "com.googlecode:kiama_2.8.1:1.0.2"
   compile "com.googlecode:jyield:0.0.6"
 
-  // use the uber jar which contains all necessary dependencies already
+  // use the uber jar which contains all necessary dependencies already,
+  // the nexusStaging scope will not be included in the pom or output artifacts
   nexusStaging group: 'org.sonatype.nexus.ant', name: 'nexus-staging-ant-tasks', version: '1.6.1', classifier: 'uber'
 }
 
@@ -73,13 +74,36 @@ task configure(description: "Configure staging deployment to $nexusUrl") {
 }
 
 task stageLocally(dependsOn: [configure, build], description: 'Prepares a local staging folder') {
-  inputs.dir "$buildDir/libs"
+  inputs.dir "$buildDir/repo"
   outputs.dir stagingDirectory
   doLast {
-    ant.'staging:stageLocally' {
-      'staging:nexusStagingInfo'(refid: nexusStagingInfoId)
-      fileset(dir: "$buildDir/libs", includes: "**/*.*")
+    
+    // create a local Maven repository in build/repo using the project coordinates
+    String groupIdPath = project.group.replace('.', '/') 
+    String repositoryPath = buildDir.absolutePath + "/repo/" + groupIdPath + "/" + project.name + "/" + project.version
+    File repositoryDirectory = new File(repositoryPath)
+    repositoryDirectory.mkdirs()
+    // adding a Maven pom file 
+    String pomFileName = repositoryPath + "/" + project.name + "-" + project.version + ".pom" 
+    // pom will automatically have the dependencies included
+    pom {
+      project {
+        groupId project.group
+        artifactId project.name
+        version project.version
+      }
+    }.writeTo(pomFileName)
+    // adding the build output
+    copy {
+      from "${buildDir}/libs"
+      into repositoryDirectory
     }
+    // and then staging it all locally
+    ant.'staging:stageLocally' {
+     'staging:nexusStagingInfo'(refid: nexusStagingInfoId)
+      fileset(dir: "$buildDir/repo", includes: "**/*.*")
+    }
+    println "Staged build output in ${stagingDirectory}"
   }
 }
 

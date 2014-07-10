@@ -85,14 +85,8 @@ task stageLocally(dependsOn: [configure, build], description: 'Prepares a local 
     repositoryDirectory.mkdirs()
     // adding a Maven pom file 
     String pomFileName = repositoryPath + "/" + project.name + "-" + project.version + ".pom" 
-    // pom will automatically have the dependencies included
-    pom {
-      project {
-        groupId project.group
-        artifactId project.name
-        version project.version
-      }
-    }.writeTo(pomFileName)
+    // pom will automatically have the dependencies and project coordinates included, you can add more here
+    pom {}.writeTo(pomFileName)
     // adding the build output
     copy {
       from "${buildDir}/libs"

@@ -80,11 +80,11 @@ task stageLocally(dependsOn: [configure, build], description: 'Prepares a local 
     
     // create a local Maven repository in build/repo using the project coordinates
     String groupIdPath = project.group.replace('.', '/') 
-    String repositoryPath = buildDir.absolutePath + "/repo/" + groupIdPath + "/" + project.name + "/" + project.version
+    String repositoryPath = "${buildDir.absolutePath}/repo/${groupIdPath}/${project.name}/${project.version}"
     File repositoryDirectory = new File(repositoryPath)
     repositoryDirectory.mkdirs()
     // adding a Maven pom file 
-    String pomFileName = repositoryPath + "/" + project.name + "-" + project.version + ".pom" 
+    String pomFileName = "${repositoryPath}/${project.name}-${project.version}.pom" 
     // pom will automatically have the dependencies and project coordinates included, you can add more here
     pom {}.writeTo(pomFileName)
     // adding the build output
@@ -97,7 +97,7 @@ task stageLocally(dependsOn: [configure, build], description: 'Prepares a local 
      'staging:nexusStagingInfo'(refid: nexusStagingInfoId)
       fileset(dir: "$buildDir/repo", includes: "**/*.*")
     }
-    println "Staged build output in ${stagingDirectory}"
+    logger.info('Staged build output in ${stagingDirectory}')
   }
 }
 

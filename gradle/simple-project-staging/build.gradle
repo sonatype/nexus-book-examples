@@ -8,6 +8,7 @@ repositories {
 }
 
 ext.stagingDirectory = file("${buildDir}/stage")
+ext.repositoryDirectory = file("${buildDir}/repository")
 
 configurations {
   // define a configuration just for using the nexus-ant-tasks, non-transitive as we use the uber jar
@@ -57,7 +58,7 @@ uploadArchives {
   }
 }
 
-task deploy(description: 'Build and deploy artifacts to staging',
+task deploy(description: 'Build and deploy artifacts to staging and release staging repository',
     dependsOn: 'releaseStagingRepository')
 
 task configure(description: "Configure staging deployment to $nexusUrl") {
@@ -73,14 +74,13 @@ task configure(description: "Configure staging deployment to $nexusUrl") {
   }
 }
 
-task stageLocally(dependsOn: [configure, build], description: 'Prepares a local staging folder') {
-  inputs.dir "$buildDir/repo"
-  outputs.dir stagingDirectory
+task createRepository(dependsOn: [build], description: 'Create a local repository as build output') {
+  inputs.dir "${buildDir}/libs"
+  outputs.dir repositoryDirectory
   doLast {
-    
-    // create a local Maven repository in build/repo using the project coordinates
+  // create a local Maven repository in repositoryDirectory using the project coordinates
     String groupIdPath = project.group.replace('.', '/') 
-    String repositoryPath = "${buildDir.absolutePath}/repo/${groupIdPath}/${project.name}/${project.version}"
+    String repositoryPath = "${repositoryDirectory}/${groupIdPath}/${project.name}/${project.version}"
     File repositoryDirectory = new File(repositoryPath)
     repositoryDirectory.mkdirs()
     // adding a Maven pom file 
@@ -92,12 +92,19 @@ task stageLocally(dependsOn: [configure, build], description: 'Prepares a local 
       from "${buildDir}/libs"
       into repositoryDirectory
     }
-    // and then staging it all locally
+    logger.lifecycle("    Build artifacts deployed in repository in ${repositoryDirectory}")
+  }
+}
+
+task stageLocally(dependsOn: [configure, build, createRepository], description: 'Prepares a local staging folder') {
+  inputs.dir repositoryDirectory
+  outputs.dir stagingDirectory
+  doLast {
     ant.'staging:stageLocally' {
      'staging:nexusStagingInfo'(refid: nexusStagingInfoId)
-      fileset(dir: "$buildDir/repo", includes: "**/*.*")
+      fileset(dir: repositoryDirectory, includes: "**/*.*")
     }
-    logger.info('Staged build output in ${stagingDirectory}')
+    logger.lifecycle("    Staged build output into ${stagingDirectory}")
   }
 }
 
@@ -106,6 +113,7 @@ task stageRemotely(dependsOn: stageLocally, description: 'Upload the local stagi
     ant.'staging:stageRemotely' {
       'staging:nexusStagingInfo'(refid: nexusStagingInfoId)
     }
+    logger.lifecycle("    Created the remote staging repository.")
   }
 }
 
@@ -114,6 +122,7 @@ task releaseStagingRepository(dependsOn: stageRemotely, description: 'Release th
     ant.'staging:releaseStagingRepository'(description: 'release staging repo') {
       'staging:nexusStagingInfo'(refid: nexusStagingInfoId)
     }
+    logger.lifecycle("    Released the remote staging repository.")
   }
 }
 
@@ -121,3 +130,4 @@ task releaseStagingRepository(dependsOn: stageRemotely, description: 'Release th
 task wrapper(type: Wrapper, description: "create a gradlew") {
   gradleVersion = '2.0'
 }
+

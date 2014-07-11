@@ -8,7 +8,7 @@
 
   <aether:authentication username="admin" password="admin123" id="auth"/>
 
-  <aether:remoterepo id="release.repo" url="http://localhost:8081/nexus/service/local/staging/deploy/maven2">
+  <aether:remoterepo id="release.repo" url="http://localhost:8081/nexus/content/repositories/releases">
     <releases enabled="true" updates="daily"/>
     <snapshots enabled="false"/>
     <authentication refid="auth"/>

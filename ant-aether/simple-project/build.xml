@@ -1,4 +1,4 @@
-<project name="mvp" default="install"
+<project name="simple-project" default="install"
   xmlns:aether="antlib:org.eclipse.aether.ant">
 
   <import file="../../ant-tasks/aether-ant-tasks.xml" />

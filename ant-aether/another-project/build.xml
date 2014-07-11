@@ -1,9 +1,9 @@
-<project name="mvp" default="install"
+<project name="another-project" default="install"
   xmlns:aether="antlib:org.eclipse.aether.ant">
 
   <import file="../../ant-tasks/aether-ant-tasks.xml" />
-  <dirname property="simple-project.basedir" file="${ant.file.simple-project}/" />
-  <aether:pom file="${simple-project.basedir}/pom.xml" id="pom" />
+  <dirname property="another-project.basedir" file="${ant.file.another-project}/" />
+  <aether:pom file="${another-project.basedir}/pom.xml" id="pom" />
 
   <property name="build.dir" value="target" />
   <property name="dep.dir" value="lib"/>

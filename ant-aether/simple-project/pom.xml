@@ -6,29 +6,12 @@
   <artifactId>simple-project</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-
   <name>simple-project</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  <distributionManagement>
-    <repository>
-      <id>nexus</id>
-      <name>Nexus Releases</name>
-      <url>http://localhost:8081/nexus/service/local/staging/deploy/maven2</url>
-    </repository>
-    <snapshotRepository>
-      <id>nexus</id>
-      <name>Nexus Snapshot</name>
-      <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <site>
-      <id>nexus</id>
-      <name>Nexus Sites</name>
-      <url>dav:http://localhost:8081/nexus/content/sites/site/</url>
-    </site>
-  </distributionManagement>
+ 
   <build>
    <extensions>
       <extension>

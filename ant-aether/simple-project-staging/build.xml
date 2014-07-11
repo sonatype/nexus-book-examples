@@ -11,7 +11,7 @@
   <property name="jar.name" value="simple-project.jar"/>
   <property name="src.dir" value="src/main/java" />
 
-  <dirname property="simple-project-staging.basedir" file="${ant.file.simple-project}/" />
+  <dirname property="simple-project-staging.basedir" file="${ant.file.simple-project-staging}/" />
   <aether:pom file="${simple-project-staging.basedir}/pom.xml" id="pom" />
 
   <staging:nexusStagingInfo id="target-nexus" stagingDirectory="${build.dir}/localStage">
@@ -101,10 +101,11 @@
     <staging:stageRemotely>
       <staging:nexusStagingInfo refid="target-nexus"/>
     </staging:stageRemotely>
-
+<!--
     <staging:releaseStagingRepository autoDropAfterRelease="true">
       <staging:nexusStagingInfo refid="target-nexus"/>
     </staging:releaseStagingRepository>
+    -->
   </target>
 
 

@@ -90,7 +90,7 @@
     <property name="repoPath" value="${repo.dir}/${groupIdPath}/${pom.artifactId}/${pom.version}" />
     <mkdir dir="${repoPath}"/>
     <copy file="${build.dir}/${jar.name}" toFile="${repoPath}/${pom.artifactId}-${pom.version}.jar" verbose="true"/>
-    <copy file="${simple-project.basedir}/pom.xml" toFile="${repoPath}/${pom.artifactId}-${pom.version}.pom" verbose="true"/>
+    <copy file="${simple-project-staging.basedir}/pom.xml" toFile="${repoPath}/${pom.artifactId}-${pom.version}.pom" verbose="true"/>
     <echo message="Local staging repository created, components in: ${repoPath}"/>
 
     <staging:stageLocally>

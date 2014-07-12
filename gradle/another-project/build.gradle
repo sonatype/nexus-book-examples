@@ -4,12 +4,12 @@ apply plugin: 'maven'
 group = 'org.sonatype.nexus.example'
 version = '1.0.0-SNAPSHOT'
 
-
 repositories {
     maven {
-          url "http://localhost:8081/nexus/content/groups/public"
+        url "${nexusUrl}/content/groups/public"
     }
 }
+
 
 dependencies {
     compile "org.sonatype.nexus.examples:simple-project:1.0.0-SNAPSHOT"
@@ -18,10 +18,10 @@ dependencies {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: 'http://localhost:8081/nexus/content/repositories/releases') {
+            repository(url: "${nexusUrl}/content/repositories/releases") {
                 authentication(userName: nexusUsername, password: nexusPassword)
             }
-            snapshotRepository(url: 'http://localhost:8081/nexus/content/repositories/snapshots') {
+            snapshotRepository(url: "${nexusUrl}/content/repositories/snapshots") {
                 authentication(userName: nexusUsername, password: nexusPassword)
             }
         }

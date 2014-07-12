@@ -1,15 +1,12 @@
 <ivysettings>
    <settings defaultResolver="nexus"/>
-    <credentials host="localhost" 
-                 realm="Sonatype Nexus Repository Manager" 
-                 username="admin" passwd="admin123"/>
-    <publications>
-        <artifact name="another-project" type="jar"/>
-    </publications>
+    <credentials host="localhost" realm="Sonatype Nexus Repository Manager" username="deployment" passwd="deployment123"/>
     <property name="nexus-public" value="http://localhost:8081/nexus/content/groups/public"/>
-    <property name="nexus-stage" value="http://localhost:8081/nexus/service/local/staging/deploy/maven2"/>
+    <property name="nexus-releases" value="http://localhost:8081/nexus/content/repositories/releases"/>
+    <property name="nexus-snapshots" value="http://localhost:8081/nexus/content/repositories/snapshots"/>
     <resolvers>
       <ibiblio name="nexus" m2compatible="true" root="${nexus-public}"/>
-      <ibiblio name="nexus-stage" m2compatible="true" root="${nexus-stage}"/>
+      <ibiblio name="nexus-snapshots" m2compatible="true" root="${nexus-snapshots}"/>
+      <ibiblio name="nexus-releases" m2compatible="true" root="${nexus-releases}"/>
     </resolvers>
 </ivysettings>

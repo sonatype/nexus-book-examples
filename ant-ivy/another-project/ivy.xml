@@ -1,6 +1,10 @@
 <ivy-module version="2.0">
-    <info organisation="org.sonatype.nexus.examples" module="another-project" revision="1.0"/>
-    <dependencies>
-      <dependency org="org.sonatype.nexus.examples" name="simple-project" rev="1.0.0-SNAPSHOT"/>
-    </dependencies>
+  <info organisation="org.sonatype.nexus.examples" module="another-project" revision="1.0.0" />
+  <publications>
+    <artifact type="pom" ext="pom" conf="default" />
+    <artifact type="jar" ext="jar" conf="default" />
+  </publications>
+  <dependencies>
+    <dependency org="org.sonatype.nexus.examples" name="simple-project" rev="1.0.0" />
+  </dependencies>
 </ivy-module>

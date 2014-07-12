@@ -1,10 +1,13 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
+group = 'org.sonatype.nexus.example'
+version = '1.0.0'
+
 repositories {
-  maven {
-    url nexusPublicGroup
-  }
+    maven {
+        url "${nexusUrl}/content/groups/public"
+    }
 }
 
 ext.stagingDirectory = file("${buildDir}/stage")

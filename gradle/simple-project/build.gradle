@@ -5,9 +5,9 @@ group = 'org.sonatype.nexus.example'
 version = '1.0.0-SNAPSHOT'
 
 repositories {
-    maven {
-        url "${nexusUrl}/content/groups/public"
-    }
+  maven {
+    url "https://repo1.maven.org/maven2"
+  }
 }
 
 dependencies {

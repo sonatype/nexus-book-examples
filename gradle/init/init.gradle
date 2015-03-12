@@ -1,0 +1,51 @@
+/**
+ * init.gradle file for development using Nexus as proxy repository
+ * 
+ * @author Manfred Moser <manfred@simpligility.com
+ */
+
+apply plugin:NexusRepositoryPlugin
+
+class NexusRepositoryPlugin implements Plugin<Gradle> {
+
+  final static String LOG_PREFIX = "init.gradle/NexusRepositoryPlugin:"
+
+  final Closure NexusConfig = {
+    maven {
+      name = 'standard-nexus'
+      url = 'http://localhost:8081/nexus/content/groups/public'
+    }
+    // if required you can add further repositories or groups here and they will
+    // be left intact if the name starts with standard-
+    // although it is better to just add those repositories in Nexus 
+    // and expose them via the public group
+  }
+
+  final Closure RepoHandler = {
+    all { ArtifactRepository repo ->
+      if (repo.name.toString().startsWith("standard-") ) {
+         println "$LOG_PREFIX    $repo.name at $repo.url activated as repository."
+      } else {
+        if (repo instanceof MavenArtifactRepository) {
+          remove repo
+          println "$LOG_PREFIX    $repo.name at $repo.url removed."
+        } else {
+          println "$LOG_PREFIX    $repo.name kept (not a Maven repository)."
+        }
+      }
+    }
+  }
+
+          
+  void apply(Gradle gradle) {
+    // Override all project specified Maven repos with standard defined in here
+    gradle.allprojects{ project ->
+      println "$LOG_PREFIX  Reconfiguring repositories and buildscript repositories."
+      project.repositories RepoHandler
+      project.buildscript.repositories RepoHandler
+
+      project.repositories NexusConfig
+      project.buildscript.repositories NexusConfig
+    }
+  }
+}

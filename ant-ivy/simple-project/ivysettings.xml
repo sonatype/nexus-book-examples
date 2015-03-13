@@ -1,8 +1,12 @@
 <ivysettings>
-  <settings defaultResolver="chain" />
-  <resolvers>
-    <chain name="chain">
-      <ibiblio name="securedcentral" m2compatible="true" root="https://repo1.maven.org/maven2" />
-    </chain>
-  </resolvers>
+  <settings defaultResolver="nexus"/>
+    <credentials host="localhost" realm="Sonatype Nexus Repository Manager" username="deployment" passwd="deployment123"/>
+    <property name="nexus-public" value="http://localhost:8081/nexus/content/groups/public"/>
+    <property name="nexus-releases" value="http://localhost:8081/nexus/content/repositories/releases"/>
+    <property name="nexus-snapshots" value="http://localhost:8081/nexus/content/repositories/snapshots"/>
+    <resolvers>
+      <ibiblio name="nexus" m2compatible="true" root="${nexus-public}"/>
+      <ibiblio name="nexus-snapshots" m2compatible="true" root="${nexus-snapshots}"/>
+      <ibiblio name="nexus-releases" m2compatible="true" root="${nexus-releases}"/>
+    </resolvers>
 </ivysettings>

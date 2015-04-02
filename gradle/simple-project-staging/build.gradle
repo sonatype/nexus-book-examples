@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-group = 'org.sonatype.nexus.example'
+group = 'org.sonatype.nexus.examples'
 version = '1.0.0'
 
 repositories {

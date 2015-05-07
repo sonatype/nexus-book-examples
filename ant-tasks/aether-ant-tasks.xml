@@ -8,18 +8,18 @@
 
   <aether:authentication username="admin" password="admin123" id="auth"/>
 
-  <aether:remoterepo id="release.repo" url="http://localhost:8081/nexus/content/repositories/releases">
+  <aether:remoterepo id="release.repo" url="http://localhost:8081/repository/maven-releases">
     <releases enabled="true" updates="daily"/>
     <snapshots enabled="false"/>
     <authentication refid="auth"/>
   </aether:remoterepo>
 
-  <aether:remoterepo id="snapshot.repo" url="http://localhost:8081/nexus/content/repositories/snapshots">
+  <aether:remoterepo id="snapshot.repo" url="http://localhost:8081/repository/maven-snapshots">
     <releases enabled="false"/>
     <snapshots enabled="true"/>
     <authentication refid="auth"/>
   </aether:remoterepo>
 
   <!-- Download everything from the public group of Nexus  -->
-  <aether:mirror id="mirror" url="http://localhost:8081/nexus/content/groups/public/" mirrorOf="*"/>
+  <aether:mirror id="mirror" url="http://localhost:8081/repository/maven-public/" mirrorOf="*"/>
 </project>

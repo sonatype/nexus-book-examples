@@ -1,6 +1,6 @@
 <project xmlns:ivy="antlib:org.apache.ivy.ant" default="jar">
   <property name="ivy.version" value="2.3.0"/>
-  <property name="ivy.url" value="http://localhost:8081/nexus/content/groups/public/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"/>
+  <property name="ivy.url" value="http://localhost:8081/repository/maven-public/org/apache/ivy/ivy/${ivy.version}/ivy-${ivy.version}.jar"/>
   <property name="ivy.jar.dir" value="${basedir}/ivy"/>
   <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar"/>
   <property name="build.dir" value="target"/>

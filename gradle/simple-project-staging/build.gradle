@@ -54,7 +54,7 @@ dependencies {
 uploadArchives {
   repositories {
     mavenDeployer {
-      snapshotRepository(url: 'http://localhost:8081/nexus/content/repositories/snapshots') {
+      snapshotRepository(url: 'http://localhost:8081/repository/maven-snapshots') {
         authentication(userName: nexusUsername, password: nexusPassword)
       }
     }

@@ -6,7 +6,7 @@
       <!--Send all requests to the public group -->
       <id>nexus</id>
       <mirrorOf>*</mirrorOf>
-      <url>http://localhost:8081/nexus/content/groups/public</url>
+      <url>http://localhost:8081/repository/maven-public</url>
     </mirror>
   </mirrors>
   <activeProfiles>

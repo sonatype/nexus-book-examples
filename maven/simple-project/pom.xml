@@ -16,7 +16,7 @@
     <repository>
       <id>nexus</id>
       <name>Nexus Releases</name>
-      <url>http://localhost:8081/service/local/staging/deploy/maven2</url>
+      <url>http://localhost:8081/repository/maven-releases</url>
     </repository>
     <snapshotRepository>
       <id>nexus</id>
@@ -26,7 +26,7 @@
     <site>
       <id>nexus</id>
       <name>Nexus Sites</name>
-      <url>dav:http://localhost:8081/repository/site/</url>
+      <url>dav:http://localhost:8081/repository/site</url>
     </site>
   </distributionManagement>
   <build>

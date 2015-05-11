@@ -6,7 +6,7 @@ version = '1.0.0-SNAPSHOT'
 
 repositories {
   maven {
-    url "${nexusUrl}/content/groups/public"
+    url "${nexusUrl}/repository/maven-public"
   }
 }
 
@@ -40,10 +40,10 @@ dependencies {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "${nexusUrl}/content/repositories/releases") {
+            repository(url: "${nexusUrl}/repository/maven-releases") {
                 authentication(userName: nexusUsername, password: nexusPassword)
             }
-            snapshotRepository(url: "${nexusUrl}/content/repositories/snapshots") {
+            snapshotRepository(url: "${nexusUrl}/repository/maven-snapshots") {
                 authentication(userName: nexusUsername, password: nexusPassword)
             }
         }

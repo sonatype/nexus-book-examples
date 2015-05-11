@@ -6,7 +6,7 @@ version = '1.0.0'
 
 repositories {
     maven {
-        url "${nexusUrl}/content/groups/public"
+        url "${nexusUrl}/repository/maven-public"
     }
 }
 

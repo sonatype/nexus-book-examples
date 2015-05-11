@@ -6,7 +6,7 @@
     </classpath>
   </taskdef>
   
-  <property name="nexus.url" value="http://localhost:8081/nexus"/>
+  <property name="nexus.url" value="http://localhost:8081"/>
   <property name="nexus.username" value="admin"/>
   <property name="nexus.password" value="admin123"/>
 </project>

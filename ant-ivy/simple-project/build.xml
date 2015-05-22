@@ -24,17 +24,17 @@
     <ivy:retrieve/>
   </target>
 
-  <target name="compile" depends="init">
+  <target name="compile" depends="init" description="--> compile Java source">
     <echo message="compiling..."/>
     <mkdir dir="${build.dir}/classes"/>
     <javac srcdir="${src.dir}" destdir="${build.dir}/classes"/>
   </target>
 
-  <target name="jar" depends="compile">
+  <target name="jar" depends="compile" description="--> package jar">
     <jar destfile="${build.dir}/${ivy.module}.jar" basedir="${build.dir}/classes"/>
   </target>
 
-  <target name="deploy" depends="jar">
+  <target name="deploy" depends="jar" description="--> deploy to repository">
     <ivy:deliver deliverpattern="${build.dir}/ivy.xml" pubrevision="${ivy.revision}" status="release"/>
     <ivy:makepom ivyfile="${build.dir}/ivy.xml" pomfile="${build.dir}/${ivy.module}.pom"/>
     <ivy:resolve/>

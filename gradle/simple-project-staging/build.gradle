@@ -48,7 +48,7 @@ dependencies {
 
   // use the uber jar which contains all necessary dependencies already,
   // the nexusStaging scope will not be included in the pom or output artifacts
-  nexusStaging group: 'org.sonatype.nexus.ant', name: 'nexus-staging-ant-tasks', version: '1.6.1', classifier: 'uber'
+  nexusStaging group: 'org.sonatype.nexus.ant', name: 'nexus-staging-ant-tasks', version: '1.6.3', classifier: 'uber'
 }
 
 uploadArchives {

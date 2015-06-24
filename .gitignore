@@ -5,6 +5,5 @@ repository
 .gradle
 build
 ivy
-lib
 .classpath
 .settings

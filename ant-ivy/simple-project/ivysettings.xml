@@ -1,6 +1,6 @@
 <ivysettings>
   <settings defaultResolver="nexus"/>
-    <credentials host="localhost" realm="Sonatype Nexus Repository Manager" username="deployment" passwd="deployment123"/>
+    <credentials host="localhost" realm="Nexus Repository Manager" username="deployment" passwd="deployment123"/>
     <property name="nexus-public" value="http://localhost:8081/nexus/content/groups/public"/>
     <property name="nexus-releases" value="http://localhost:8081/nexus/content/repositories/releases"/>
     <property name="nexus-snapshots" value="http://localhost:8081/nexus/content/repositories/snapshots"/>

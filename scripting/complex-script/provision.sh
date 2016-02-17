@@ -22,3 +22,5 @@ echo "Provisioning Scripts Starting"
 echo "Publishing and executing on $host"
 
 addAndRunScript docker dockerRepositories.groovy
+addAndRunScript npmBower npmAndBowerRepositories.groovy
+addAndRunScript raw rawRepositories.groovy

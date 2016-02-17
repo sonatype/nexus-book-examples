@@ -1,3 +1,9 @@
+/**
+ * An example script that handles adding or updating a groovy script via the REST API.
+ * TBD: The dependencies currently require access to the sonatype-grid. Upon the next release
+ * the dependencies will be available in the Central Repository and download via Ivy should
+ * be automatic.
+ */
 @Grab('org.sonatype.nexus:nexus-rest-client:3.0.0-SNAPSHOT')
 @Grab('org.sonatype.nexus:nexus-rest-jackson2:3.0.0-SNAPSHOT')
 @Grab('org.sonatype.nexus:nexus-script:3.0.0-SNAPSHOT')
@@ -11,7 +17,7 @@ import org.jboss.resteasy.client.jaxrs.BasicAuthentication
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder
 
 CliBuilder cli = new CliBuilder(
-    usage: 'groovy clientDemo.groovy -u admin -p admin123 -f scriptFile.groovy [-n explicitName] [-h nx3Url]')
+    usage: 'groovy addUpdateScript.groovy -u admin -p admin123 -f scriptFile.groovy [-n explicitName] [-h nx3Url]')
 cli.with {
   u longOpt: 'username', args: 1, required: true, 'A User with permission to use the NX3 Script resource'
   p longOpt: 'password', args: 1, required: true, 'Password for given User'

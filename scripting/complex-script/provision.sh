@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# A simple example script that publishes a number of scripts to the Nexus Repository Manager
+# and executes them.
+
 # fail if anything errors
 set -e
 # fail if a function call is missing an argument
@@ -7,6 +10,8 @@ set -u
 
 username=admin
 password=admin123
+
+# add the context if you are not using the root context
 host=http://localhost:8081
 
 function addAndRunScript {
@@ -24,3 +29,5 @@ echo "Publishing and executing on $host"
 addAndRunScript docker dockerRepositories.groovy
 addAndRunScript npmBower npmAndBowerRepositories.groovy
 addAndRunScript raw rawRepositories.groovy
+
+echo "Provisioning Scripts Executed" 

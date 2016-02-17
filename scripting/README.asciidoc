@@ -1,0 +1,3 @@
+== Scripting Examples
+
+Example projects for scripting as documented in http://books.sonatype.com/nexus-book/3.0/reference/scripting.html

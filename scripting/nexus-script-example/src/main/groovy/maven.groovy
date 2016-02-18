@@ -1,3 +1,5 @@
+// simple example showing simple method and equivalent method with all default parameters expanded.
+
 import org.sonatype.nexus.blobstore.api.BlobStoreManager
 import org.sonatype.nexus.repository.storage.WritePolicy
 

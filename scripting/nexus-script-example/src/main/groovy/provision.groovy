@@ -1,3 +1,5 @@
+// The four main API providers are blobStore, security, repository and core.
+
 blobStore.createFileBlobStore("npm")
 
 security.addRole("blue")

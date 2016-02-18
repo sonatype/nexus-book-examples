@@ -1,18 +1,22 @@
 import org.sonatype.nexus.blobstore.api.BlobStoreManager
 
-repository.createDockerHosted("docker-internal", 1, 18444) // change httpPort to null once that works
+// create hosted repo and expose via https to allow deployments
+repository.createDockerHosted("docker-internal", null, 18444) 
 
-repository.createDockerProxy("docker-hub",              // name
+// create proxy repo of Docker Hub and enable v1 to get search to work
+// no ports since access is only indirectly via group
+repository.createDockerProxy("docker-hub",                   // name
                              "https://registry-1.docker.io", // remoteUrl
                              "HUB",                          // indexType
                              null,                           // indexUrl
-                             2,                           // httpPort TBD -- change to null once that works
-                             3,                           // httpsPort TBD -- change to null once that works
+                             null,                           // httpPort
+                             null,                           // httpsPort
                              BlobStoreManager.DEFAULT_BLOBSTORE_NAME, // blobStoreName 
                              true, // strictContentTypeValidation
                              true  // v1Enabled
                              )
 
-repository.createDockerGroup("docker-all", 4, 18443, true, "docker-internal", "docker-hub") // change httpPort to null once that works
+// create group and allow access via https
+repository.createDockerGroup("docker-all", null, 18443, true, "docker-internal", "docker-hub")
 
 

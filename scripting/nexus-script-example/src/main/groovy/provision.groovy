@@ -4,6 +4,6 @@ blobStore.createFileBlobStore("npm")
 
 security.addRole("blue")
 
-repository.createBowerHosted("private-")
+repository.createBowerHosted("bower-internal"")
 
 core.baseUrl("http://repo.example.com")

@@ -17,7 +17,8 @@ repository.createDockerProxy('docker-hub',                   // name
                              )
 
 // create group and allow access via https
-repository.createDockerGroup('docker-all', null, 18443, true, 'docker-internal', 'docker-hub')
+def groupMembers = ['docker-hub', 'docker-internal']
+repository.createDockerGroup('docker-all', null, 18443, groupMembers, true)
 
 
 log.info('Script dockerRepositories completed successfully')

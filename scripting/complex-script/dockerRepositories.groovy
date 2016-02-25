@@ -20,3 +20,4 @@ repository.createDockerProxy('docker-hub',                   // name
 repository.createDockerGroup('docker-all', null, 18443, true, 'docker-internal', 'docker-hub')
 
 
+log.info('Script dockerRepositories completed successfully')

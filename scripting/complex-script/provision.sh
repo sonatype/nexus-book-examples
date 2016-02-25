@@ -32,4 +32,4 @@ addAndRunScript raw rawRepositories.groovy
 addAndRunScript security security.groovy
 addAndRunScript security core.groovy
 
-echo "Provisioning Scripts Executed" 
+echo "Provisioning Scripts Completed" 

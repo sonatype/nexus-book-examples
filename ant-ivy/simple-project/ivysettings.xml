@@ -1,6 +1,6 @@
 <ivysettings>
   <settings defaultResolver="nexus"/>
-  <credentials host="localhost" realm="Sonatype Nexus Repository Manager" username="admin" passwd="admin123"/>
+  <credentials host="localhost" realm="Sonatype Nexus" username="admin" passwd="admin123"/>
   <property name="nexus-public" value="http://localhost:8081/repository/maven-public"/>
   <property name="nexus-releases" value="http://localhost:8081/repository/maven-releases"/>
   <property name="nexus-snapshots" value="http://localhost:8081/repository/maven-snapshots"/>

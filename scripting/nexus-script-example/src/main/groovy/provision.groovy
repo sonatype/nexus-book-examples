@@ -1,8 +1,8 @@
 // The four main API providers are blobStore, security, repository and core.
 
-blobStore.createFileBlobStore('npm')
+blobStore.createFileBlobStore('npm', 'npm')
 
-security.addRole('blue')
+security.addRole('blue','blue', 'Blue Role', [], [])
 
 repository.createBowerHosted('bower-internal')
 

@@ -8,7 +8,7 @@
   <version>1.0-SNAPSHOT</version>
 
   <properties>
-    <nx-version>3.0.0-SNAPSHOT</nx-version>
+    <nx-version>3.0.0-03</nx-version>
   </properties>
   <dependencies>
     <dependency>

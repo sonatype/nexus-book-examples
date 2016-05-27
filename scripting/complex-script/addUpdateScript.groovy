@@ -1,12 +1,9 @@
 /**
  * An example script that handles adding or updating a groovy script via the REST API.
- * TBD: The dependencies currently require access to the sonatype-grid. Upon the next release
- * the dependencies will be available in the Central Repository and download via Ivy should
- * be automatic.
  */
-@Grab('org.sonatype.nexus:nexus-rest-client:3.0.0-SNAPSHOT')
-@Grab('org.sonatype.nexus:nexus-rest-jackson2:3.0.0-SNAPSHOT')
-@Grab('org.sonatype.nexus:nexus-script:3.0.0-SNAPSHOT')
+@Grab('org.sonatype.nexus:nexus-rest-client:3.0.0-03')
+@Grab('org.sonatype.nexus:nexus-rest-jackson2:3.0.0-03')
+@Grab('org.sonatype.nexus:nexus-script:3.0.0-03')
 @GrabExclude('org.codehaus.groovy:groovy-all')
 import javax.ws.rs.NotFoundException
 

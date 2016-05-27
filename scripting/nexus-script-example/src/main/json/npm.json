@@ -1,0 +1,5 @@
+{
+  "name": "npm",
+  "type": "groovy",
+  "content": "repository.createNpmHosted('npm-internal'); repository.createnNpmProxy('npmjs-org','https://registry.npmjs.org'); repository.createNpmGroup('npm-all',['npmjs-org','npm-internal'])"
+}

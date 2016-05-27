@@ -1,0 +1,6 @@
+{
+  "name": "bower",
+  "type": "groovy",
+  "content": "repository.createBowerHosted('bower-internal'); repository.createBowerProxy('bower-io','http://bower.herokuapp.com'); repository.createBowerGroup('bower-all',['bower-io','bower-internal'])"
+}
+

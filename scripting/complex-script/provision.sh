@@ -18,18 +18,18 @@ function addAndRunScript {
   name=$1
   file=$2
   groovy -Dgroovy.grape.report.downloads=true addUpdatescript.groovy -u "$username" -p "$password" -n "$name" -f "$file" -h "$host"
-  echo "Published $file as $name"
-  curl -v -X POST -u admin:admin123 --header "Content-Type: text/plain" "$host/service/siesta/rest/v1/script/$name/run"
-  echo "Successfully executed $name script"
+  printf "\nPublished $file as $name\n"
+  curl -v -X POST -u $username:$password --header "Content-Type: text/plain" "$host/service/siesta/rest/v1/script/$name/run"
+  printf "\nSuccessfully executed $name script\n"
 }
 
-echo "Provisioning Scripts Starting" 
-echo "Publishing and executing on $host"
+printf "Provisioning Integration API Scripts Starting \n\n" 
+printf "Publishing and executing on $host\n"
 
 addAndRunScript docker dockerRepositories.groovy
 addAndRunScript npmBower npmAndBowerRepositories.groovy
 addAndRunScript raw rawRepositories.groovy
 addAndRunScript security security.groovy
-addAndRunScript security core.groovy
+addAndRunScript core core.groovy
 
-echo "Provisioning Scripts Completed" 
+printf "Provisioning Scripts Completed" 

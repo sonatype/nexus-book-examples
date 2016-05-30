@@ -29,7 +29,6 @@ function addAndRunScript {
 printf "Provisioning Integration API Scripts Starting \n\n" 
 printf "Publishing and executing on $host\n"
 
-addAndRunScript docker dockerRepositories.groovy
 addAndRunScript npmBower npmAndBowerRepositories.groovy
 addAndRunScript raw rawRepositories.groovy
 addAndRunScript security security.groovy

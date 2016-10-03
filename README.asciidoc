@@ -9,7 +9,7 @@ Online versions are available at
 
 * http://www.sonatype.com/Support/Books/Repository-Management-with-Nexus[Repository Management with Nexus - complete book]
 
-* http://www.sonatype.com/books/nexus-book/reference/eval.html[Nexus Repository Manager Evaluation Guide content in Nexus book]
+* https://books.sonatype.com/nexus-book/reference/eval.html[Nexus Repository Manager Evaluation Guide content in Nexus book]
 
 Please use the documentation in the book and evaluation guide for information on how to start Nexus and replicate various use cases.
 

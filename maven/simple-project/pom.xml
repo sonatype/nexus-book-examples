@@ -14,12 +14,12 @@
   </properties>
   <distributionManagement>
     <repository>
-      <id>nexus</id>
+      <id>maven-releases</id>
       <name>Nexus Releases</name>
       <url>http://localhost:8081/repository/maven-releases</url>
     </repository>
     <snapshotRepository>
-      <id>nexus</id>
+      <id>maven-snapshots</id>
       <name>Nexus Snapshot</name>
       <url>http://localhost:8081/repository/maven-snapshots</url>
     </snapshotRepository>

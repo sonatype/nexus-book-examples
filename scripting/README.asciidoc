@@ -1,6 +1,6 @@
 == REST and Integration API Scripting Examples
 
-Example projects for REST and Integration API as documented in http://books.sonatype.com/nexus-book/3.0/reference/scripting.html
+Example projects for REST and Integration API as documented in http://books.sonatype.com/nexus-book/reference3/scripting.html
 
 simple-shell-example:: simple JSON script files and shell scripts for interaction with the REST API
 nexus-script-example:: Maven project for script development with IntelliJ IDEA-supported code completion

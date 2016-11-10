@@ -7,7 +7,7 @@ It is available in source from https://github.com/sonatype/nexus-book[https://gi
 
 The online versions are available at
 
-* http://www.sonatype.com/Support/Books/Repository-Management-with-Nexus[Repository Management with Nexus - complete book]
+* https://books.sonatype.com/nexus-book/reference3/[Repository Management with Nexus - complete book]
 
 Please use the documentation in the book  for information on how to start the Nexus Repository Manager and replicate various use cases.
 

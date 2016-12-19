@@ -1,9 +1,9 @@
 /**
  * An example script that handles adding or updating a groovy script via the REST API.
  */
-@Grab('org.sonatype.nexus:nexus-rest-client:3.1.0-04')
-@Grab('org.sonatype.nexus:nexus-rest-jackson2:3.1.0-04')
-@Grab('org.sonatype.nexus:nexus-script:3.1.0-04')
+@Grab('org.sonatype.nexus:nexus-rest-client:3.2.0-01')
+@Grab('org.sonatype.nexus:nexus-rest-jackson2:3.2.0-01')
+@Grab('org.sonatype.nexus:nexus-script:3.2.0-01')
 @GrabExclude('org.codehaus.groovy:groovy-all')
 import javax.ws.rs.NotFoundException
 

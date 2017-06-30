@@ -1,0 +1,27 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+group = 'com.example.automation'
+version = '1.0-SNAPSHOT'
+
+description = """Example of how to configure a simple IDE environment with code completion for developing NXRM3 
+Integrations scripts"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+ext.versions = [
+    nxrm3: '3.3.1-01'
+]
+
+dependencies {
+  compile group: 'org.sonatype.nexus', name: 'nexus-core', version: versions.nxrm3
+  compile group: 'org.sonatype.nexus', name: 'nexus-script', version: versions.nxrm3
+  compile group: 'org.sonatype.nexus', name: 'nexus-security', version: versions.nxrm3
+  compile group: 'org.sonatype.nexus', name: 'nexus-repository', version: versions.nxrm3
+  compile group: 'org.sonatype.nexus.plugins', name: 'nexus-repository-maven', version: versions.nxrm3
+  compile group: 'org.sonatype.nexus.plugins', name: 'nexus-script-plugin', version: versions.nxrm3
+}

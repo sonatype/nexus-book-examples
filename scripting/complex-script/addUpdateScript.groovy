@@ -45,7 +45,7 @@ def file = new File(options.f)
 assert file.exists()
 
 def host = options.h ?: 'http://localhost:8081'
-def resource = 'service/siesta'
+def resource = 'service/rest'
 
 ScriptClient scripts = new ResteasyClientBuilder()
     .build()
@@ -74,4 +74,4 @@ else {
   scripts.edit(name, script)
 }
 
-println "Stored scripts are now: ${scripts.browse().collect { it.name }}" 
+println "Stored scripts are now: ${scripts.browse().collect { it.name }}"

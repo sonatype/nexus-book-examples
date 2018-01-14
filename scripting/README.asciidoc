@@ -1,7 +1,22 @@
-== REST and Integration API Scripting Examples
+== Integration API Scripting Examples
 
-Example projects for REST and Integration API as documented in http://books.sonatype.com/nexus-book/reference3/scripting.html
+Example projects for the Integration API as documented in https://help.sonatype.com/display/NXRM3/REST+and+Integration+API
 
-simple-shell-example:: simple JSON script files and shell scripts for interaction with the REST API
-nexus-script-example:: Maven project for script development with IntelliJ IDEA-supported code completion
-complex-script:: complex provisioning setup based on a shell script invoking numerous groovy scripts for upload and execution
+Getting Started
+~~~~~~~~~~~~~~~
+Look at the examples in these projects to get more familiar with how to load, run, and write your own scripts to run inside of Nexus Repository Manager.
+
+Step 1 - simple-shell-example:: simple JSON script files and shell scripts for interaction with the REST API
+Step 2 - nexus-script-example:: Maven project for script development with IntelliJ IDEA-supported code completion
+Step 3 - complex-script:: complex provisioning setup based on a shell script invoking numerous groovy scripts for upload and execution
+
+API Reference
+~~~~~~~~~~~~~
+There are 4 officially supported API interfaces:
+
+. Core
+. BlobStore
+. Repository
+. Security
+
+To learn more about the methods in each interface, use code complete in your favorite IDE with the +nexus-script-example+ project, or take a look at the Javadoc link:apidocs/index.html[index.html]

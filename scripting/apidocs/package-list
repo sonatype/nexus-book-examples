@@ -1,0 +1,4 @@
+org.sonatype.nexus
+org.sonatype.nexus.common.script
+org.sonatype.nexus.script.plugin
+org.sonatype.nexus.security

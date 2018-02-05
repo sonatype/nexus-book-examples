@@ -2,4 +2,4 @@
 
 printf "Listing Integration API Scripts\n"
 
-curl -v -u admin:admin123 'http://localhost:8081/service/siesta/rest/v1/script'
+curl -v -u admin:admin123 'http://localhost:8081/service/rest/v1/script'

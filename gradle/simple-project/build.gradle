@@ -53,3 +53,8 @@ uploadArchives {
 task wrapper( type: Wrapper, description: "create a gradlew" ) {
     gradleVersion = '2.0'
 }
+
+task copyDependencies(type: Copy) {
+   from configurations.runtime
+   into "$buildDir/dependencies"
+}

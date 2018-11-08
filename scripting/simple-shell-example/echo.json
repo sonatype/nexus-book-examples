@@ -1,0 +1,5 @@
+{
+  "name": "echo",
+  "type": "groovy",
+  "content": "def youSaid = args; return 'Hello. You said: ' + youSaid;"
+}

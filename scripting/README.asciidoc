@@ -2,6 +2,8 @@
 
 Example projects for the Integration API as documented in https://help.sonatype.com/display/NXRM3/REST+and+Integration+API
 
+See what other interesting scripts have been created at https://community.sonatype.com
+
 Getting Started
 ~~~~~~~~~~~~~~~
 Look at the examples in these projects to get more familiar with how to load, run, and write your own scripts to run inside of Nexus Repository Manager.
@@ -9,6 +11,19 @@ Look at the examples in these projects to get more familiar with how to load, ru
 Step 1 - simple-shell-example:: simple JSON script files and shell scripts for interaction with the REST API
 Step 2 - nexus-script-example:: Maven project for script development with IntelliJ IDEA-supported code completion
 Step 3 - complex-script:: complex provisioning setup based on a shell script invoking numerous groovy scripts for upload and execution
+
+Passing Parameters
+~~~~~~~~~~~~~~~~~~
+When running the script, the body of the POST request will be passed to your groovy in the _args_ field. You can treat this as a normal string, use Groovy's JsonSlurper to parse it as JSON, or read in any other groovy way.
+
+The link:simple-shell-example/echo.json[echo.json] sample shows this in action. To test it out: 
+
+. First, cut and paste the contents of _echo.json_ into the body field in the Nexus API UI for adding a new script and give your script a name, and click the "execute" button to submit the POST _/v1/script_ request to save the script in your instance of Nexus Repository Manager
+. Next, using the name from Step 1, execute the POST _/v1/script/{name}/run_ request with any text you choose in the body.
+. Notice that the response for Step 2 will return the text that you passed in!
+
+For a more interesting example, see link:complex-script/addRole.groovy[addRole.groovy] and the corresponding documentation at the bottom of https://help.sonatype.com/repomanager3/rest-and-integration-api/script-api/examples. This script allows you to create your own custom REST API that enables you automate the creation of new Roles inside of Nexus Repository Manager.
+
 
 API Reference
 ~~~~~~~~~~~~~
@@ -19,4 +34,5 @@ There are 4 officially supported API interfaces:
 . Repository
 . Security
 
-To learn more about the methods in each interface, use code complete in your favorite IDE with the +nexus-script-example+ project, or take a look at the Javadoc link:apidocs/index.html[index.html]
+To learn more about the methods in each interface, use code complete in your favorite IDE with the _nexus-script-example_ project, or take a look at the Javadoc link:apidocs/index.html[index.html]
+

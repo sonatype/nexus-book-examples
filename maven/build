@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Detect base directory
+#add it
 program="$0"
 while [ -h "$program" ] ; do
     ls=`ls -ld "$program"`
